@@ -1,0 +1,9 @@
+#To list bitbukcet project keys
+curl --silent -u user:'password' -X GET -H "Content-Type: application/json" "http://bitbucket:8000/rest/api/1.0/projects/?limit=100" | jq '.values[] | .key' | tr -d ' " '
+
+bitbucket_project_name="Aaa Bbb Ccc Ddd Eee Fff"
+
+for proj_name in $bitbucket_project_name
+	do
+	curl -u user:'password' -X PUT -H "Content-Type: application/json" "http://bitbucket:8000/rest/api/1.0/projects/$proj_name/permissions/users?name=sweety&permission=PROJECT_READ"
+done
